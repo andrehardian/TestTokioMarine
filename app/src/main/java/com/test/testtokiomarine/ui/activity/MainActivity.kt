@@ -1,4 +1,4 @@
-package com.test.testtokiomarine.ui
+package com.test.testtokiomarine.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

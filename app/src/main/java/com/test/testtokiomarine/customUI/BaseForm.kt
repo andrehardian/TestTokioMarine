@@ -23,7 +23,7 @@ abstract class BaseForm<DATA, VM : BaseFormVM, binding : ViewDataBinding>(
 
     override fun setData(data: DATA) {
         if (data is String)
-            vm.label.set(data as String)
+            vm.value.set(data as String)
     }
 
     override fun setLabel(label: String) {
