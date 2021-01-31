@@ -38,7 +38,7 @@ class ListDataViewModel : BaseVM<ListDataNavigator >() {
     }
 
     private fun detail(modelLeads: ModelLeads?) {
-
+        navigator!!.get()!!.showDetail(modelLeads)
     }
 
     fun delete(modelLeads: ModelLeads) {

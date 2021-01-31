@@ -23,7 +23,7 @@ class ListDataFragment : BaseFragment<ListDataFragmentBinding, ListDataViewModel
         viewModel.setNavigator(this)
     }
 
-    override fun showDetail(modelLeads: ModelLeads) {
+    override fun showDetail(modelLeads: ModelLeads?) {
         findNavController().navigate(R.id.action_list_data_to_detail,Bundle().apply {
             putSerializable("data_leads",modelLeads)
         })
