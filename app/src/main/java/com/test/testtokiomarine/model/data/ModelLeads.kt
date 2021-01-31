@@ -3,6 +3,7 @@ package com.test.testtokiomarine.model.data
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
+import java.io.Serializable
 
 @RealmClass
 open class ModelLeads(
@@ -14,6 +15,6 @@ open class ModelLeads(
     var updateAt: String? = null,
     var productInfo: ProductInfo? = null
 ) :
-    RealmObject() {
+    RealmObject(), Serializable {
 
 }

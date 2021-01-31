@@ -10,25 +10,41 @@
             type="com.test.testtokiomarine.ui.fragment.list.ListDataViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_rounded_stroke_grey_white_solid"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:afterTextChanged="@{vmList::afterTextChange}"
+                android:hint="search"
+                android:padding="5dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/adapter_list_data" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/black"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@color/white"
+            android:onClick="@{()->vmList.add()}"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_rounded_stroke_grey_white_solid"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="5dp"
-            android:hint="search"
-            android:padding="5dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:id="@+id/list"
-            tools:listitem="@layout/adapter_list_data"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_gravity="bottom|right"
+            android:layout_margin="10dp" />
+    </FrameLayout>
 </layout>

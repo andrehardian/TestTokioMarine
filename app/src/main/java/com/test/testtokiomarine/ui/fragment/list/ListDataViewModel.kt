@@ -23,12 +23,20 @@ class ListDataViewModel : ViewModel() {
         getData();
     }
 
+    fun add() {
+
+    }
+
     private fun getData() {
 
     }
 
     fun detail(modelLeads: ModelLeads, binding: AdapterListDataBinding) {
+        detal(modelLeads)
+    }
 
+    private fun detal(modelLeads: ModelLeads) {
+        TODO("Not yet implemented")
     }
 
     fun delete(modelLeads: ModelLeads) {

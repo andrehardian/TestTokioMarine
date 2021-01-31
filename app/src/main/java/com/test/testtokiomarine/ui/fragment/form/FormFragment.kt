@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
 import com.test.testtokiomarine.databinding.FormFragmentBinding
+import com.test.testtokiomarine.model.data.ModelLeads
 import com.test.testtokiomarine.ui.base.BaseFragment
 
 class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
@@ -15,8 +16,9 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
     override val viewModel: FormViewModel
         get() = FormViewModel()
 
-    private var id: Long = -1
+    private var leads: ModelLeads? = null
 
+/*
     companion object {
         const val KEY = "id_data"
         fun newInstance(id: Long) = FormFragment()
@@ -26,10 +28,11 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
                 }
             }
     }
+*/
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        id = FormFragmentArgs.fromBundle(requireArguments()).idData
+        leads = FormFragmentArgs.fromBundle(requireArguments()).dataLeads
     }
 
 
