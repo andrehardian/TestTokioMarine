@@ -9,10 +9,12 @@ import com.test.testtokiomarine.ui.base.BaseAdapter
 
 class ListDataAdapter(
     dataList: ArrayList<ModelLeads>,
-    action: (ModelLeads, AdapterListDataBinding) -> Unit
+    action: (ModelLeads, AdapterListDataBinding) -> Unit,
+    delete: (ModelLeads) -> Unit
 ) : BaseAdapter<ModelLeads>(dataList) {
     private lateinit var binding: AdapterListDataBinding
     private val action: (ModelLeads, AdapterListDataBinding) -> Unit = action
+    private val delete: (ModelLeads) -> Unit = delete
     override fun createHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         binding =
             AdapterListDataBinding.inflate(LayoutInflater.from(parent.context), parent, false);
@@ -24,7 +26,7 @@ class ListDataAdapter(
             (holder.viewDataBinding as AdapterListDataBinding).vmAdapterData =
                 ListDataVM(
                     listData.get(position), action,
-                    binding
+                    delete, binding
                 )
         }
     }

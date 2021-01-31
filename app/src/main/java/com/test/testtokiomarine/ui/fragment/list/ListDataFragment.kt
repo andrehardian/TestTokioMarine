@@ -16,15 +16,4 @@ class ListDataFragment : BaseFragment<ListDataFragmentBinding, ListDataViewModel
         get() = ListDataViewModel()
 
 
-
-    private fun setLoadMore() {
-        viewDataBinding?.list?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
-                viewModel.loadMoreData(linearLayoutManager)
-
-            }
-        })
-    }
 }

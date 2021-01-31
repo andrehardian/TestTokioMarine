@@ -6,26 +6,32 @@ import com.test.testtokiomarine.model.data.ModelLeads
 import java.util.*
 
 class ListDataVM(
-    itemData: ModelLeads?, var actionDetail: (ModelLeads, AdapterListDataBinding) -> Unit,
+    itemData: ModelLeads?,
+    var actionDetail: (ModelLeads, AdapterListDataBinding) -> Unit,
+    var actionDelete: (ModelLeads) -> Unit,
     var binding: AdapterListDataBinding
 ) : Observable() {
 
     val name = ObservableField<String>()
+    val birthDate = ObservableField<String>()
+    val updateAt = ObservableField<String>()
+    val productName = ObservableField<String>()
 
     var data: ModelLeads? = itemData
 
     init {
         name.set(data?.name)
+        birthDate.set(data?.dateOfBirth)
+        updateAt.set(data?.updateAt)
+        productName.set(data?.productInfo?.product)
     }
 
     fun goDetail() {
-//        ViewCompat.setTransitionName(binding.oval, "oval")
-//        ViewCompat.setTransitionName(binding.tvCompanyName, "companyName")
-//        ViewCompat.setTransitionName(binding.tvName, "name")
-        with(binding) {
-            executePendingBindings()
-        }
         actionDetail(data!!, binding)
+    }
+
+    fun delete() {
+        actionDelete(data!!)
     }
 
 }

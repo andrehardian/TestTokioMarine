@@ -1,5 +1,6 @@
 package com.test.testtokiomarine.ui.fragment.list
 
+import android.text.Editable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
@@ -11,9 +12,26 @@ class ListDataViewModel : ViewModel() {
     var search = ObservableField<String>()
     var isEmpty = ObservableBoolean(true)
     var isLoadingLoadMore = false
-    var adapter = ListDataAdapter(ArrayList(), ::detail)
+    var adapter = ListDataAdapter(ArrayList(), ::detail, ::delete)
+
+    init {
+
+    }
+
+    fun afterTextChange(s: Editable) {
+        search.set(s.toString())
+        getData();
+    }
+
+    private fun getData() {
+
+    }
 
     fun detail(modelLeads: ModelLeads, binding: AdapterListDataBinding) {
+
+    }
+
+    fun delete(modelLeads: ModelLeads) {
 
     }
 }

@@ -29,9 +29,7 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        arguments!!.getLong(KEY).let {
-            id = it
-        }
+        id = FormFragmentArgs.fromBundle(requireArguments()).idData
     }
 
 

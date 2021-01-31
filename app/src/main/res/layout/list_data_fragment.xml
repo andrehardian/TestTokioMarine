@@ -28,6 +28,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:id="@+id/list"
+            tools:listitem="@layout/adapter_list_data"
             android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

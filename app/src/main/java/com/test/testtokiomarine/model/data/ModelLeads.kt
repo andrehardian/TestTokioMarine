@@ -10,6 +10,8 @@ open class ModelLeads(
     var id: Long? = -1,
     var name: String? = null,
     var dateOfBirth: String? = null,
+    var createdAt: String? = null,
+    var updateAt: String? = null,
     var productInfo: ProductInfo? = null
 ) :
     RealmObject() {
