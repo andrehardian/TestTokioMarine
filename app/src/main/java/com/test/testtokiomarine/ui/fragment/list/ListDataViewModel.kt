@@ -6,9 +6,11 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.test.testtokiomarine.databinding.AdapterListDataBinding
 import com.test.testtokiomarine.model.data.ModelLeads
+import com.test.testtokiomarine.ui.base.BaseVM
 import com.test.testtokiomarine.ui.fragment.list.adapter.ListDataAdapter
+import java.lang.ref.WeakReference
 
-class ListDataViewModel : ViewModel() {
+class ListDataViewModel : BaseVM<ListDataNavigator >() {
     var search = ObservableField<String>()
     var isEmpty = ObservableBoolean(true)
     var isLoadingLoadMore = false
@@ -24,7 +26,7 @@ class ListDataViewModel : ViewModel() {
     }
 
     fun add() {
-
+        detail(null)
     }
 
     private fun getData() {
@@ -32,11 +34,11 @@ class ListDataViewModel : ViewModel() {
     }
 
     fun detail(modelLeads: ModelLeads, binding: AdapterListDataBinding) {
-        detal(modelLeads)
+        detail(modelLeads)
     }
 
-    private fun detal(modelLeads: ModelLeads) {
-        TODO("Not yet implemented")
+    private fun detail(modelLeads: ModelLeads?) {
+
     }
 
     fun delete(modelLeads: ModelLeads) {
