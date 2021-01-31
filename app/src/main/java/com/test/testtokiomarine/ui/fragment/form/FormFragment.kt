@@ -11,7 +11,7 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
     override val bindingVariable: Int
         get() = BR.vmForm
     override val layoutId: Int
-        get() = R.layout.list_data_fragment
+        get() = R.layout.form_fragment
     override val viewModel: FormViewModel
         get() = FormViewModel()
 

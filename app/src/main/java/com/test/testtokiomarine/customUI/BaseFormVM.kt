@@ -4,6 +4,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 
 open abstract class BaseFormVM : ViewModel() {
+
     val label = ObservableField<String>()
     val value = ObservableField<String>()
+    lateinit var listener: (data: String) -> Unit
 }

@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModel
 import com.test.testtokiomarine.R
 import com.test.testtokiomarine.customUI.BaseFormVM
 
@@ -19,6 +17,7 @@ class SpinnerVM<T>(context: Context, data: ArrayList<T>) : BaseFormVM() {
 
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
             value.set(p0!!.getItemAtPosition(p2) as String)
+            listener(value.get()!!)
         }
     }
 

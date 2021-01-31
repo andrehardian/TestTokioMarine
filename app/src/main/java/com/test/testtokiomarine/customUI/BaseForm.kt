@@ -15,7 +15,7 @@ abstract class BaseForm<DATA, VM : BaseFormVM, binding : ViewDataBinding>(
     Form<DATA> {
     abstract val vm: VM
     abstract val layoutId: Int
-    lateinit var vdb: binding
+     var vdb: binding
 
     override fun getData(): String {
         return vm.value.get().toString()
@@ -41,5 +41,7 @@ abstract class BaseForm<DATA, VM : BaseFormVM, binding : ViewDataBinding>(
         vdb.setVariable(BR._all, vm)
     }
 
-
+    override fun setListener(listener: (String) -> Unit) {
+        vm.listener = listener
+    }
 }
