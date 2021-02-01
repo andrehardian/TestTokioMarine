@@ -21,7 +21,7 @@ class ListDataFragment : BaseFragment<ListDataFragmentBinding, ListDataViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.setNavigator(this)
+        mViewModel!!.setNavigator(this)
     }
 
     override fun showDetail(@Nullable modelLeads: ModelLeads?) {

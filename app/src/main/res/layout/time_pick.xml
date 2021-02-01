@@ -4,24 +4,30 @@
     <data>
 
         <variable
-            name="vm"
+            name="vmCustom"
             type="com.test.testtokiomarine.customUI.timePicker.TimePickerVM" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/title"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{vmCustom.labelObs}" />
 
         <TextView
             android:id="@+id/value"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rounded_stroke_grey_white_solid"
+            android:onClick="@{()->vmCustom.click()}"
+            android:text="@{vmCustom.valueObs}" />
     </LinearLayout>
 </layout>

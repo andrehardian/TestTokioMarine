@@ -11,7 +11,7 @@ import com.test.testtokiomarine.customUI.timePicker.TimePickerForm
 abstract class FormFactory {
     companion object {
         @JvmStatic
-        fun getForm(formType: String, context: Context, data: Any): Form<*>? {
+        fun getForm(formType: String, context: Context, data: Any): Form<*,*>? {
             when (formType) {
                 FormType.FREE_TEXT -> {
                     return FreeTextForm(context, data = data as String)

@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="vmCustom"
             type="com.test.testtokiomarine.customUI.multiLine.MultiLineVM" />
     </data>
 
@@ -17,13 +17,15 @@
         <TextView
             android:layout_width="match_parent"
             android:id="@+id/title"
-            android:text="@{vm.label}"
+            android:text="@{vmCustom.labelObs}"
             android:layout_height="wrap_content" />
 
         <EditText
+            android:background="@drawable/bg_rounded_stroke_grey_white_solid"
             android:id="@+id/value"
             android:lines="5"
-            android:text="@{vm.value}"
+            android:layout_marginTop="5dp"
+            android:text="@{vmCustom.valueObs}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

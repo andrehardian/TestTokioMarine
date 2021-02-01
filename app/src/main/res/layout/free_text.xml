@@ -2,30 +2,31 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
         <variable
-            name="vm"
+            name="vmCustom"
             type="com.test.testtokiomarine.customUI.freeText.FreeTextVM" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="5dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
-            android:layout_width="match_parent"
             android:id="@+id/title"
-            android:text="@{vm.label}"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{vmCustom.labelObs}" />
 
         <EditText
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rounded_stroke_grey_white_solid"
             android:id="@+id/value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:imeOptions="actionNext"
             android:lines="1"
-            android:text="@{vm.value}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="@{vmCustom.valueObs}" />
     </LinearLayout>
 </layout>

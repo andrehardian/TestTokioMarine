@@ -6,8 +6,9 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.test.testtokiomarine.R
 import com.test.testtokiomarine.customUI.BaseFormVM
+import com.test.testtokiomarine.customUI.FormListener
 
-class SpinnerVM<T>(context: Context, data: ArrayList<T>) : BaseFormVM() {
+class SpinnerVM<T>(context: Context) : BaseFormVM<Any,String>() {
     var spinnerAdapter: ArrayAdapter<T>
 
     val click = object : AdapterView.OnItemSelectedListener {
@@ -16,8 +17,8 @@ class SpinnerVM<T>(context: Context, data: ArrayList<T>) : BaseFormVM() {
         }
 
         override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            value.set(p0!!.getItemAtPosition(p2) as String)
-            listener(value.get()!!)
+            setValue(p0!!.getItemAtPosition(p2) as String)
+            listener(value!!)
         }
     }
 
@@ -30,7 +31,7 @@ class SpinnerVM<T>(context: Context, data: ArrayList<T>) : BaseFormVM() {
         spinnerAdapter = ArrayAdapter<T>(
             context,
             R.layout.support_simple_spinner_dropdown_item,
-            data
+            ArrayList()
         )
     }
 

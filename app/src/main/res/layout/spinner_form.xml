@@ -6,27 +6,34 @@
     <data>
 
         <variable
-            name="vm"
+            name="vmCustom"
             type="com.test.testtokiomarine.customUI.spinner.SpinnerVM" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
-            android:text="@{vm.label}"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            app:setAdapter="@{vm.spinnerAdapter}"
-            tools:setOnItemSelectedListener="@{vm.click}" />
+            android:text="@{vmCustom.labelObs}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/bg_rounded_stroke_grey_white_solid"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                app:setAdapter="@{vmCustom.spinnerAdapter}"
+                tools:setOnItemSelectedListener="@{vmCustom.click}" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

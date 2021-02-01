@@ -1,6 +1,15 @@
 package com.test.testtokiomarine.customUI.datePicker
 
-import com.test.testtokiomarine.customUI.BaseFormVM
+import com.test.testtokiomarine.customUI.BasePickerVM
+import java.text.SimpleDateFormat
 
-class DatePickerVM<T> : BaseFormVM() {
+class DatePickerVM : BasePickerVM() {
+    fun setDate(year: Int, month: Int, day: Int) {
+        calendar.set(year, month, day)
+        setValue(SimpleDateFormat("yyyy-MM-dd").format(calendar.time))
+    }
+
+    init {
+        setValue("Tap to set")
+    }
 }

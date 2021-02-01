@@ -1,7 +1,6 @@
 package com.test.testtokiomarine.ui.fragment.form
 
 import android.content.Context
-import android.os.Bundle
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
 import com.test.testtokiomarine.databinding.FormFragmentBinding
@@ -32,7 +31,7 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        leads = FormFragmentArgs.fromBundle(requireArguments()).dataLeads
+//        leads = FormFragmentArgs.fromBundle(requireArguments()).dataLeads
     }
 
 

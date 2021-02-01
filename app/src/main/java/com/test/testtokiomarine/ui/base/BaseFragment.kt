@@ -15,7 +15,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() 
     private var rootView: View? = null
     var viewDataBinding: VDB? = null
         private set
-    private var mViewModel: VM? = null
+    protected var mViewModel: VM? = null
     abstract val bindingVariable: Int
 
     @get:LayoutRes
@@ -23,12 +23,16 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() 
 
     abstract val viewModel: VM
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mViewModel = viewModel
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = viewModel
         viewDataBinding = DataBindingUtil.inflate<VDB>(inflater, layoutId, container, false)
         rootView = viewDataBinding!!.root
         return rootView

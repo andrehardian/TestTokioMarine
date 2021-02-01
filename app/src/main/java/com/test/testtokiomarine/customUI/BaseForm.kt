@@ -1,57 +1,81 @@
 package com.test.testtokiomarine.customUI
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
 
-abstract class BaseForm<DATA, VM : BaseFormVM, binding : ViewDataBinding> :
+abstract class BaseForm<DATA,RESULT, VM : BaseFormVM<*, RESULT>, BINDING : ViewDataBinding> :
     LinearLayout,
-    Form<DATA> {
-    abstract val vm: VM
+    Form<DATA,RESULT> {
+    @get:LayoutRes
     abstract val layoutId: Int
-    var vdb: binding
-    lateinit var typedArray: TypedArray
+    var vdb: BINDING
+    private var data: DATA? = null
+    abstract val vm: VM?
+    var viewModel: VM? = null
 
-    constructor(context: Context, data: DATA) : super(context) {
+    constructor(context: Context) : super(context) {
 
     }
 
+    constructor(context: Context, @Nullable data: DATA?) : super(context) {
+        this.data = data
+    }
+
+    val getData: DATA?
+        get() {
+            return data;
+        }
+
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-        typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.BaseForm, 0, 0)
+        val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.BaseForm, 0, 0)
+        if (typedArray != null) {
+            typedArray!!.getString(R.styleable.BaseForm_label)?.let { setLabel(it) }
+            typedArray!!.recycle()
+        }
     }
 
     override fun getData(): String {
-        return vm.value.get().toString()
+        return viewModel!!.value!!
     }
 
     override fun setData(data: DATA) {
         if (data is String)
-            vm.value.set(data as String)
+            viewModel!!.setValue(data)
     }
 
     override fun setLabel(label: String) {
-        vm.label.set(label)
+        viewModel!!.setLabel(label)
     }
 
     init {
+        viewModel = vm
         val layoutInflater =
-            context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater;
-        vdb = DataBindingUtil.inflate<binding>(
+            LayoutInflater.from(context)
+        vdb = DataBindingUtil.inflate(
             layoutInflater
-            , layoutId, this, false
+            , layoutId, this, true
         )
 
-        vdb.setVariable(BR._all, vm)
-        typedArray.getString(R.styleable.BaseForm_label)?.let { setLabel(it) }
+        vdb.setVariable(BR.vmCustom, viewModel)
+        initFun()
     }
 
-    override fun setListener(listener: (String) -> Unit) {
-        vm.listener = listener
+
+    override fun initFun() {
+
     }
+
+    override fun setListener(listener: (RESULT) -> Unit) {
+        viewModel!!.listener = listener
+    }
+
+
 }
