@@ -1,6 +1,7 @@
 package com.test.testtokiomarine.ui.fragment.list
 
 import android.os.Bundle
+import androidx.annotation.Nullable
 import androidx.navigation.fragment.findNavController
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
@@ -23,9 +24,9 @@ class ListDataFragment : BaseFragment<ListDataFragmentBinding, ListDataViewModel
         viewModel.setNavigator(this)
     }
 
-    override fun showDetail(modelLeads: ModelLeads?) {
-        findNavController().navigate(R.id.action_list_data_to_detail,Bundle().apply {
-            putSerializable("data_leads",modelLeads)
+    override fun showDetail(@Nullable modelLeads: ModelLeads?) {
+        findNavController().navigate(R.id.action_list_data_to_detail, Bundle().apply {
+            putSerializable("data_leads", modelLeads)
         })
     }
 }

@@ -4,8 +4,15 @@ import androidx.lifecycle.ViewModel
 import java.lang.ref.WeakReference
 
 abstract class BaseVM<T> : ViewModel() {
-    protected var navigator: WeakReference<T>? = null
+    private var navigator: WeakReference<T>? = null
+
     fun setNavigator(nav: T) {
-        this.navigator = WeakReference(nav)
+        navigator = WeakReference(nav)
+        println(navigator)
     }
+
+    val getNavigator: T?
+        get() {
+            return navigator!!.get()
+        }
 }

@@ -28,6 +28,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mViewModel = viewModel
         viewDataBinding = DataBindingUtil.inflate<VDB>(inflater, layoutId, container, false)
         rootView = viewDataBinding!!.root
         return rootView
@@ -35,7 +36,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable,viewModel)
+        viewDataBinding!!.setVariable(bindingVariable,mViewModel)
         viewDataBinding!!.lifecycleOwner = this
         viewDataBinding!!.executePendingBindings()
     }
