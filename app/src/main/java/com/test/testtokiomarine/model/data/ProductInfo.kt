@@ -13,6 +13,11 @@ open class ProductInfo(
     var date: String? = null,
     var timeStart: String? = null,
     var timeEnd: String? = null,
-    var notes: String? = null
+    var notes: String? = null,
+    var place: String? = null,
+    var price: String? = null,
+    var reason: String? = null,
+    var howLong: String? = null,
+    var productCode: String? = null
 ) : RealmObject(), Serializable {
 }

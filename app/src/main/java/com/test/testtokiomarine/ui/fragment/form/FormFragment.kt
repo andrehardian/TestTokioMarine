@@ -29,6 +29,7 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>(), FormNav
     override fun onAttach(context: Context) {
         super.onAttach(context)
         leads = FormFragmentArgs.fromBundle(requireArguments()).dataLeads
+        viewModel!!.setData(leads!!,viewDataBinding!!.group)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

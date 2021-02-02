@@ -46,7 +46,7 @@ abstract class BaseForm<DATA, RESULT, VM : BaseFormVM<*, RESULT>, BINDING : View
         return viewModel!!.value!!
     }
 
-    override fun setData(data: DATA): BaseForm<DATA, RESULT, VM, BINDING> {
+    override fun setData(data: DATA?): BaseForm<DATA, RESULT, VM, BINDING> {
         if (data is String)
             viewModel!!.setValue(data)
         return this
@@ -77,6 +77,10 @@ abstract class BaseForm<DATA, RESULT, VM : BaseFormVM<*, RESULT>, BINDING : View
 
     override fun setListener(listener: (RESULT) -> Unit) {
         viewModel!!.listener = listener
+    }
+
+    override fun getLabel(): String {
+        return viewModel!!.label!!
     }
 
 

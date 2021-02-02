@@ -1,13 +1,19 @@
 package com.test.testtokiomarine.ui.fragment.form
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.children
 import androidx.lifecycle.MutableLiveData
 import com.test.testtokiomarine.common.ActivityType
 import com.test.testtokiomarine.common.AdditionalType
+import com.test.testtokiomarine.common.LabelForm
+import com.test.testtokiomarine.customUI.BaseForm
 import com.test.testtokiomarine.fact.form.FormFactory
 import com.test.testtokiomarine.fact.form.FormType
 import com.test.testtokiomarine.fact.product.ProductFactory
 import com.test.testtokiomarine.fact.product.ProductType
+import com.test.testtokiomarine.model.data.ModelLeads
 import com.test.testtokiomarine.ui.base.BaseVM
 import java.util.*
 import kotlin.collections.ArrayList
@@ -104,8 +110,67 @@ class FormViewModel : BaseVM<FormNavigator>() {
         }
     }
 
-    fun save(){
+    fun save() {
 
+    }
+
+    fun setData(leads: ModelLeads, rootView: ViewGroup) {
+        for (view in rootView.children) {
+            if (view is LinearLayout) {
+                for (child in view.children) {
+                    if (child is BaseForm<*, *, *, *>) {
+                        child.setData(inputData(leads, child))
+                    }
+                }
+            } else if (view is BaseForm<*, *, *, *>) {
+                view.setData(inputData(leads, view))
+            }
+        }
+    }
+
+    private fun inputData(leads: ModelLeads, form: BaseForm<*, *, *, *>): String? {
+        when (form.getLabel()) {
+            LabelForm.NAME -> {
+                return leads.name
+            }
+            LabelForm.DOB -> {
+                return leads.dateOfBirth
+            }
+            LabelForm.PRODUCT -> {
+                return leads.productInfo!!.product
+            }
+            LabelForm.ACT_TYPE -> {
+               return leads.productInfo!!.activityType
+            }
+            LabelForm.PLACE -> {
+                return leads.productInfo!!.place
+            }
+            LabelForm.DATE -> {
+              return  leads.productInfo!!.date
+            }
+            LabelForm.START -> {
+              return  leads.productInfo!!.timeStart
+            }
+            LabelForm.END -> {
+              return  leads.productInfo!!.timeEnd
+            }
+            LabelForm.PRICE -> {
+                return leads.productInfo!!.price
+            }
+            LabelForm.HOW_LONG -> {
+                return leads.productInfo!!.howLong
+            }
+            LabelForm.NOTES -> {
+                return leads.productInfo!!.notes
+            }
+            LabelForm.PRODUCT_CODE -> {
+               return leads.productInfo!!.productCode
+            }
+            LabelForm.REASON -> {
+                return leads.productInfo!!.reason
+            }
+        }
+        return ""
     }
 
     init {

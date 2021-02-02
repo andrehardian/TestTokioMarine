@@ -22,11 +22,11 @@ class SpinnerForm :
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
     }
 
-    override fun setData(data: List<String>): BaseForm<List<String>, String, SpinnerVM<String>, SpinnerFormBinding> {
-        viewModel!!.setData(data)
+    override fun setData(data: List<String>?): BaseForm<List<String>, String, SpinnerVM<String>, SpinnerFormBinding> {
+        viewModel!!.setData(data!!)
         return this
-    }
 
+    }
     override fun setInput(typedArray: TypedArray) {
         super.setInput(typedArray)
         val id = typedArray.getResourceId(R.styleable.BaseForm_entries, 0)
