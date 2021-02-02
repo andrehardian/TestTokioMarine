@@ -9,24 +9,21 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import com.test.testtokiomarine.ui.VMFactory
 
 abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() {
     private var baseActivity: BaseActivity? = null
     private var rootView: View? = null
     var viewDataBinding: VDB? = null
         private set
-    protected var mViewModel: VM? = null
+    lateinit var vmFactory: VMFactory
+
     abstract val bindingVariable: Int
+    lateinit var vm: VM
 
     @get:LayoutRes
     abstract val layoutId: Int
 
-    abstract val viewModel: VM
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mViewModel = viewModel
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +37,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : ViewModel> : Fragment() 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable,mViewModel)
+        viewDataBinding!!.setVariable(bindingVariable, vm)
         viewDataBinding!!.lifecycleOwner = this
         viewDataBinding!!.executePendingBindings()
     }

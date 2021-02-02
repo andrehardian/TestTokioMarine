@@ -20,9 +20,9 @@ class ListDataVM(
     var data: ModelLeads? = itemData
 
     init {
-        name.set(data?.name)
-        birthDate.set(data?.dateOfBirth)
-        updateAt.set(data?.updateAt)
+        name.set(data?.modelLeads?.name)
+        birthDate.set(data?.modelLeads?.dateOfBirth)
+        updateAt.set(data?.modelLeads?.updateAt)
         productName.set(data?.productInfo?.product)
     }
 

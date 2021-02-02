@@ -9,6 +9,7 @@ import com.test.testtokiomarine.common.ActivityType
 import com.test.testtokiomarine.common.AdditionalType
 import com.test.testtokiomarine.common.LabelForm
 import com.test.testtokiomarine.customUI.BaseForm
+import com.test.testtokiomarine.db.LeadsDao
 import com.test.testtokiomarine.fact.form.FormFactory
 import com.test.testtokiomarine.fact.form.FormType
 import com.test.testtokiomarine.fact.product.ProductFactory
@@ -18,7 +19,7 @@ import com.test.testtokiomarine.ui.base.BaseVM
 import java.util.*
 import kotlin.collections.ArrayList
 
-class FormViewModel : BaseVM<FormNavigator>() {
+class FormViewModel(datasource: LeadsDao) : BaseVM<FormNavigator>() {
     val spinnerVisibility = MutableLiveData<Int>()
     val productInfoVisibility = MutableLiveData<Int>()
 
@@ -115,44 +116,45 @@ class FormViewModel : BaseVM<FormNavigator>() {
     }
 
     fun setData(leads: ModelLeads, rootView: ViewGroup) {
-        for (view in rootView.children) {
-            if (view is LinearLayout) {
-                for (child in view.children) {
-                    if (child is BaseForm<*, *, *, *>) {
-                        child.setData(inputData(leads, child))
+        if (leads.modelLeads.id!! > -1)
+            for (view in rootView.children) {
+                if (view is LinearLayout) {
+                    for (child in view.children) {
+                        if (child is BaseForm<*, *, *, *>) {
+                            inputData(leads, child)?.let { child.setValue(it) }
+                        }
                     }
+                } else if (view is BaseForm<*, *, *, *>) {
+                    inputData(leads, view)?.let { view.setValue(it) }
                 }
-            } else if (view is BaseForm<*, *, *, *>) {
-                view.setData(inputData(leads, view))
             }
-        }
     }
 
     private fun inputData(leads: ModelLeads, form: BaseForm<*, *, *, *>): String? {
         when (form.getLabel()) {
             LabelForm.NAME -> {
-                return leads.name
+                return leads.modelLeads.name
             }
             LabelForm.DOB -> {
-                return leads.dateOfBirth
+                return leads.modelLeads.dateOfBirth
             }
             LabelForm.PRODUCT -> {
                 return leads.productInfo!!.product
             }
             LabelForm.ACT_TYPE -> {
-               return leads.productInfo!!.activityType
+                return leads.productInfo!!.activityType
             }
             LabelForm.PLACE -> {
                 return leads.productInfo!!.place
             }
             LabelForm.DATE -> {
-              return  leads.productInfo!!.date
+                return leads.productInfo!!.date
             }
             LabelForm.START -> {
-              return  leads.productInfo!!.timeStart
+                return leads.productInfo!!.timeStart
             }
             LabelForm.END -> {
-              return  leads.productInfo!!.timeEnd
+                return leads.productInfo!!.timeEnd
             }
             LabelForm.PRICE -> {
                 return leads.productInfo!!.price
@@ -164,7 +166,7 @@ class FormViewModel : BaseVM<FormNavigator>() {
                 return leads.productInfo!!.notes
             }
             LabelForm.PRODUCT_CODE -> {
-               return leads.productInfo!!.productCode
+                return leads.productInfo!!.productCode
             }
             LabelForm.REASON -> {
                 return leads.productInfo!!.reason

@@ -1,15 +1,11 @@
 package com.test.testtokiomarine.customUI.spinner
 
-import android.content.Context
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.databinding.ObservableField
-import com.test.testtokiomarine.R
 import com.test.testtokiomarine.customUI.BaseFormVM
 
-class SpinnerVM<T>(context: Context) : BaseFormVM<Any, String>() {
-//    var spinnerAdapter: ArrayAdapter<T>
+class SpinnerVM<T> : BaseFormVM<Any, String>() {
     val items = ObservableField<List<String>>()
 
     val click = object : AdapterView.OnItemSelectedListener {
@@ -25,21 +21,6 @@ class SpinnerVM<T>(context: Context) : BaseFormVM<Any, String>() {
 
     fun setData(data: List<String>) {
         items.set(data)
-/*
-        spinnerAdapter.clear()
-        spinnerAdapter.addAll(data)
-        spinnerAdapter.notifyDataSetChanged()
-*/
-    }
-
-    init {
-/*
-        spinnerAdapter = ArrayAdapter<T>(
-            context,
-            R.layout.support_simple_spinner_dropdown_item,
-            ArrayList()
-        )
-*/
     }
 
 }

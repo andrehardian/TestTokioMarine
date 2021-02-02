@@ -3,7 +3,9 @@ package com.test.testtokiomarine.ui.fragment.form
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.test.testtokiomarine.BR
+import com.test.testtokiomarine.Injection
 import com.test.testtokiomarine.R
 import com.test.testtokiomarine.common.AdditionalType
 import com.test.testtokiomarine.customUI.BaseForm
@@ -12,31 +14,36 @@ import com.test.testtokiomarine.model.data.ModelLeads
 import com.test.testtokiomarine.ui.base.BaseFragment
 
 class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>(), FormNavigator {
+
     override val bindingVariable: Int
         get() = BR.vmForm
     override val layoutId: Int
         get() = R.layout.form_fragment
-    override val viewModel: FormViewModel
-        get() = FormViewModel()
+
+    val viewModel: FormViewModel by viewModels { vmFactory }
+
 
     private var leads: ModelLeads? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mViewModel!!.setNavigator(this)
+        vmFactory = Injection.provideViewModelFactory(requireContext())
+        vm = viewModel
+        viewModel!!.setNavigator(this)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         leads = FormFragmentArgs.fromBundle(requireArguments()).dataLeads
-        viewModel!!.setData(leads!!,viewDataBinding!!.group)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.birthDate.setListener(mViewModel!!::listenerBirthDate)
-        viewDataBinding!!.spinnerProduct.setListener(mViewModel!!::listenerSpinnerProduct)
-        viewDataBinding!!.spinnerActType.setListener(mViewModel!!::listenerSpinnerActivityType)
+        viewModel!!.setData(leads!!, viewDataBinding!!.group)
+
+        viewDataBinding!!.birthDate.setListener(viewModel!!::listenerBirthDate)
+        viewDataBinding!!.spinnerProduct.setListener(viewModel!!::listenerSpinnerProduct)
+        viewDataBinding!!.spinnerActType.setListener(viewModel!!::listenerSpinnerActivityType)
     }
 
     override fun setDataSpinnerProduct(data: ArrayList<String>) {
@@ -74,6 +81,8 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>(), FormNav
     override fun getContext(): Context? {
         return super.getContext()
     }
+
+
 
 
 }

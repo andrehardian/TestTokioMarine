@@ -83,5 +83,10 @@ abstract class BaseForm<DATA, RESULT, VM : BaseFormVM<*, RESULT>, BINDING : View
         return viewModel!!.label!!
     }
 
+    override fun setValue(value: String): BaseForm<DATA, RESULT, VM, BINDING> {
+        viewModel!!.setValue(value)
+        return this
+    }
+
 
 }

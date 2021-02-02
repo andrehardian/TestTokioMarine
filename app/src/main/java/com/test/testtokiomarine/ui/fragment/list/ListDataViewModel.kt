@@ -6,12 +6,13 @@ import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.test.testtokiomarine.databinding.AdapterListDataBinding
+import com.test.testtokiomarine.db.LeadsDao
 import com.test.testtokiomarine.model.data.ModelLeads
 import com.test.testtokiomarine.ui.base.BaseVM
 import com.test.testtokiomarine.ui.fragment.list.adapter.ListDataAdapter
 import java.lang.ref.WeakReference
 
-class ListDataViewModel : BaseVM<ListDataNavigator>() {
+class ListDataViewModel(dataSource: LeadsDao) : BaseVM<ListDataNavigator>() {
     var search = ObservableField<String>()
     var adapter = ListDataAdapter(ArrayList(), ::detail, ::delete)
 

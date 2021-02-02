@@ -10,7 +10,7 @@ import com.test.testtokiomarine.databinding.SpinnerFormBinding
 class SpinnerForm :
     BaseForm<List<String>, String, SpinnerVM<String>, SpinnerFormBinding> {
     override val vm: SpinnerVM<String>
-        get() = SpinnerVM(context)
+        get() = SpinnerVM()
     override val layoutId: Int
         get() = R.layout.spinner_form
 
