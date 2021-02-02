@@ -21,6 +21,9 @@
         android:name="com.test.testtokiomarine.ui.fragment.form.FormFragment"
         android:label="Home Page"
         tools:layout="@layout/form_fragment">
+        <argument
+            android:name="data_leads"
+            app:argType="com.test.testtokiomarine.model.data.ModelLeads"></argument>
 
     </fragment>
 

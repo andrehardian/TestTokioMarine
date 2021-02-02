@@ -8,7 +8,7 @@ open abstract class BaseFormVM<T,K> : ViewModel() {
 
     val labelObs = ObservableField<String>()
     val valueObs = ObservableField<String>()
-    lateinit var listener: (data: K) -> Unit
+    var listener: ((K) -> Unit)? = null
 
     private var navigator: WeakReference<T>? = null
 

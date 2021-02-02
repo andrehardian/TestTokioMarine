@@ -24,5 +24,9 @@ class SpinnerForm :
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
     }
 
+    override fun setData(data: ArrayList<String>) {
+       viewModel!!.setData(data)
+    }
+
 
 }

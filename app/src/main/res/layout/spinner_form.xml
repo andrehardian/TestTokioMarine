@@ -26,13 +26,13 @@
             android:background="@drawable/bg_rounded_stroke_grey_white_solid"
             android:layout_height="wrap_content">
 
-            <Spinner
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:padding="5dp"
-                app:setAdapter="@{vmCustom.spinnerAdapter}"
+                android:entries="@{vmCustom.items}"
                 tools:setOnItemSelectedListener="@{vmCustom.click}" />
         </LinearLayout>
     </LinearLayout>

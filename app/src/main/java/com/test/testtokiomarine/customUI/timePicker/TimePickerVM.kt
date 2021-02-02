@@ -9,6 +9,7 @@ class TimePickerVM : BasePickerVM() {
         calendar.set(Calendar.HOUR, hour)
         calendar.set(Calendar.MINUTE, minute)
         setValue(SimpleDateFormat("HH:mm").format(calendar.time))
+        listener?.let { it(calendar) }
     }
 
     init {

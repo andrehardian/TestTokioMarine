@@ -6,8 +6,8 @@ import androidx.annotation.Nullable
 import androidx.databinding.ViewDataBinding
 import java.util.*
 
-abstract class BaseFormPicker<DATA, VM : BaseFormVM<*, Date>, BINDING : ViewDataBinding> :
-    BaseForm<DATA, Date, VM, BINDING> {
+abstract class BaseFormPicker<DATA, VM : BaseFormVM<*, Calendar>, BINDING : ViewDataBinding> :
+    BaseForm<DATA, Calendar, VM, BINDING> {
     constructor(context: Context) : super(context) {
 
     }
