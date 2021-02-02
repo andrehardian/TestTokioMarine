@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TestTokioMarine</string>
+    <string-array name="activity_type">
+        <item>Meeting</item>
+        <item>Call</item>
+        <item>Email</item>
+    </string-array>
 </resources>

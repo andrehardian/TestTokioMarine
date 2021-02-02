@@ -12,6 +12,10 @@ abstract class BaseFormPicker<DATA, VM : BaseFormVM<*, Calendar>, BINDING : View
 
     }
 
+    constructor(context: Context, label: String, value: DATA?) : super(context) {
+    }
+
+
     constructor(context: Context, @Nullable data: DATA?) : super(context) {
     }
 

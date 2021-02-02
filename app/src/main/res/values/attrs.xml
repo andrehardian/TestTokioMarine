@@ -2,6 +2,6 @@
 <resources>
     <declare-styleable name="BaseForm">
         <attr name="label" format="string"></attr>
-        <attr name="value" format="string"></attr>
+        <attr name="entries" format="reference"></attr>
     </declare-styleable>
 </resources>

@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.view.View
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
+import com.test.testtokiomarine.common.AdditionalType
+import com.test.testtokiomarine.customUI.BaseForm
 import com.test.testtokiomarine.databinding.FormFragmentBinding
-import com.test.testtokiomarine.fact.product.ProductPackage
 import com.test.testtokiomarine.model.data.ModelLeads
 import com.test.testtokiomarine.ui.base.BaseFragment
 
@@ -19,18 +20,6 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>(), FormNav
         get() = FormViewModel()
 
     private var leads: ModelLeads? = null
-
-/*
-    companion object {
-        const val KEY = "id_data"
-        fun newInstance(id: Long) = FormFragment()
-            .apply {
-                arguments = Bundle().apply {
-                    putLong(KEY, id)
-                }
-            }
-    }
-*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,10 +35,43 @@ class FormFragment : BaseFragment<FormFragmentBinding, FormViewModel>(), FormNav
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding!!.birthDate.setListener(mViewModel!!::listenerBirthDate)
         viewDataBinding!!.spinnerProduct.setListener(mViewModel!!::listenerSpinnerProduct)
+        viewDataBinding!!.spinnerActType.setListener(mViewModel!!::listenerSpinnerActivityType)
     }
 
     override fun setDataSpinnerProduct(data: ArrayList<String>) {
         viewDataBinding!!.spinnerProduct.setData(data)
+    }
+
+    override fun addView(type: AdditionalType, form: BaseForm<*, *, *, *>) {
+        when (type) {
+            AdditionalType.ADDITIONAL_PRODUCT -> {
+                viewDataBinding!!.additionalProduct.addView(form)
+            }
+            AdditionalType.ADDITIONAL_TYPE -> {
+                viewDataBinding!!.additionalType.addView(form)
+            }
+            AdditionalType.ADDITIONAL_DETAIL -> {
+                viewDataBinding!!.additionalDetail.addView(form)
+            }
+        }
+    }
+
+    override fun deleteAllView(type: AdditionalType) {
+        when (type) {
+            AdditionalType.ADDITIONAL_PRODUCT -> {
+                viewDataBinding!!.additionalProduct.removeAllViews()
+            }
+            AdditionalType.ADDITIONAL_TYPE -> {
+                viewDataBinding!!.additionalType.removeAllViews()
+            }
+            AdditionalType.ADDITIONAL_DETAIL -> {
+                viewDataBinding!!.additionalDetail.removeAllViews()
+            }
+        }
+    }
+
+    override fun getContext(): Context? {
+        return super.getContext()
     }
 
 

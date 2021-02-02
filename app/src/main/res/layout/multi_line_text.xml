@@ -24,6 +24,8 @@
             android:background="@drawable/bg_rounded_stroke_grey_white_solid"
             android:id="@+id/value"
             android:lines="5"
+            android:padding="5dp"
+            android:gravity="left|top"
             android:layout_marginTop="5dp"
             android:text="@{vmCustom.valueObs}"
             android:layout_width="match_parent"

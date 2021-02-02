@@ -1,4 +1,4 @@
-package com.test.testtokiomarine.common
+package com.test.testtokiomarine.common.spinner
 
 import android.widget.ArrayAdapter
 import android.widget.Spinner

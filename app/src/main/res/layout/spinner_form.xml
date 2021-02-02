@@ -6,7 +6,7 @@
     <data>
         <variable
             name="spinnerBind"
-            type="com.test.testtokiomarine.common.SpinnerBinding" />
+            type="com.test.testtokiomarine.common.spinner.SpinnerBinding" />
 
         <variable
             name="vmCustom"

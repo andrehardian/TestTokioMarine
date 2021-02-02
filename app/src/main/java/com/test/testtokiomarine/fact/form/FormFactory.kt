@@ -1,7 +1,7 @@
 package com.test.testtokiomarine.fact.form
 
 import android.content.Context
-import com.test.testtokiomarine.customUI.Form
+import com.test.testtokiomarine.customUI.BaseForm
 import com.test.testtokiomarine.customUI.datePicker.DatePickerForm
 import com.test.testtokiomarine.customUI.freeText.FreeTextForm
 import com.test.testtokiomarine.customUI.multiLine.MultiLineForm
@@ -11,22 +11,27 @@ import com.test.testtokiomarine.customUI.timePicker.TimePickerForm
 abstract class FormFactory {
     companion object {
         @JvmStatic
-        fun getForm(formType: String, context: Context, data: Any): Form<*,*>? {
+        fun getForm(
+            formType: String,
+            context: Context,
+            label: String,
+            data: Any?
+        ): BaseForm<*, *, *, *>? {
             when (formType) {
                 FormType.FREE_TEXT -> {
-                    return FreeTextForm(context, data = data as String)
+                    return FreeTextForm(context).setLabel(label).setData(data as String)
                 }
                 FormType.MULTI_LINE -> {
-                    return MultiLineForm(context, data = data as String)
+                    return MultiLineForm(context).setLabel(label).setData(data as String)
                 }
                 FormType.SINGLE_OPTION -> {
-                    return SpinnerForm(context, data = data as ArrayList<String>)
+                    return SpinnerForm(context).setLabel(label).setData(data as List<String>)
                 }
                 FormType.DATE_PICK -> {
-                    return DatePickerForm(context, data = data as String)
+                    return DatePickerForm(context).setLabel(label).setData(data as String)
                 }
                 FormType.TIME_PICK -> {
-                    return TimePickerForm(context, data = data as String)
+                    return TimePickerForm(context).setLabel(label).setData(data as String)
                 }
                 else -> return null;
             }

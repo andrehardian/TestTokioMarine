@@ -23,7 +23,7 @@ class SpinnerVM<T>(context: Context) : BaseFormVM<Any, String>() {
         }
     }
 
-    fun setData(data: ArrayList<String>) {
+    fun setData(data: List<String>) {
         items.set(data)
 /*
         spinnerAdapter.clear()

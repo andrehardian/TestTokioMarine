@@ -22,10 +22,6 @@ class DatePickerForm :
     }
 
 
-    constructor(context: Context, data: String) : super(context, data) {
-
-    }
-
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
     }
 

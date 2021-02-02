@@ -1,19 +1,19 @@
 package com.test.testtokiomarine.customUI
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.LayoutRes
-import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.test.testtokiomarine.BR
 import com.test.testtokiomarine.R
 
-abstract class BaseForm<DATA,RESULT, VM : BaseFormVM<*, RESULT>, BINDING : ViewDataBinding> :
+abstract class BaseForm<DATA, RESULT, VM : BaseFormVM<*, RESULT>, BINDING : ViewDataBinding> :
     LinearLayout,
-    Form<DATA,RESULT> {
+    Form<DATA, RESULT, VM, BINDING> {
     @get:LayoutRes
     abstract val layoutId: Int
     var vdb: BINDING
@@ -25,10 +25,6 @@ abstract class BaseForm<DATA,RESULT, VM : BaseFormVM<*, RESULT>, BINDING : ViewD
 
     }
 
-    constructor(context: Context, @Nullable data: DATA?) : super(context) {
-        this.data = data
-    }
-
     val getData: DATA?
         get() {
             return data;
@@ -37,22 +33,28 @@ abstract class BaseForm<DATA,RESULT, VM : BaseFormVM<*, RESULT>, BINDING : ViewD
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
         val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.BaseForm, 0, 0)
         if (typedArray != null) {
-            typedArray!!.getString(R.styleable.BaseForm_label)?.let { setLabel(it) }
+            setInput(typedArray)
             typedArray!!.recycle()
         }
+    }
+
+    override fun setInput(typedArray: TypedArray) {
+        typedArray!!.getString(R.styleable.BaseForm_label)?.let { setLabel(it) }
     }
 
     override fun getData(): String {
         return viewModel!!.value!!
     }
 
-    override fun setData(data: DATA) {
+    override fun setData(data: DATA): BaseForm<DATA, RESULT, VM, BINDING> {
         if (data is String)
             viewModel!!.setValue(data)
+        return this
     }
 
-    override fun setLabel(label: String) {
+    override fun setLabel(label: String): BaseForm<DATA, RESULT, VM, BINDING> {
         viewModel!!.setLabel(label)
+        return this
     }
 
     init {
