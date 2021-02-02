@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="spinnerBind"
+            type="com.test.testtokiomarine.common.SpinnerBinding" />
 
         <variable
             name="vmCustom"
@@ -26,13 +29,13 @@
             android:background="@drawable/bg_rounded_stroke_grey_white_solid"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatSpinner
+            <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:padding="5dp"
-                android:entries="@{vmCustom.items}"
+                app:entries="@{vmCustom.items}"
                 tools:setOnItemSelectedListener="@{vmCustom.click}" />
         </LinearLayout>
     </LinearLayout>

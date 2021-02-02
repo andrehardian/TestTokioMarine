@@ -15,7 +15,7 @@ class FormViewModel : BaseVM<FormNavigator>() {
     fun listenerBirthDate(calendar: Calendar) {
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         val birthYear = calendar.get(Calendar.YEAR)
-        val age = currentYear - birthYear
+        val age = /*currentYear - birthYear*/21
         val listProduct: ArrayList<String> = ArrayList()
         val types = arrayOf(ProductType.PRODUCT_A, ProductType.PRODUCT_B)
         for (type in types) {
@@ -36,7 +36,7 @@ class FormViewModel : BaseVM<FormNavigator>() {
     }
 
     init {
-        spinnerVisibility.postValue(View.GONE)
+        spinnerVisibility.postValue(View.VISIBLE)
         productInfoVisibility.postValue(View.GONE)
     }
 }
